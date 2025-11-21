@@ -10,7 +10,7 @@ import re
 
 import os
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-
+CERT_PATH = os.path.join(os.path.dirname(__file__), "zscaler.crt")
 
 prompt_template = """
 Extract structured parameters for a Dialogflow webhook.
@@ -57,7 +57,7 @@ def send_to_webhook(json_params):
     r = requests.post(
         "https://chatbot-lpd7.onrender.com/webhook",
         json=payload,
-        verify="Zscaler Intermediate Root CA (zscaler.net).crt"  # ✅ Custom cert
+        verify="CERT_PATH"  # ✅ Custom cert
     )
     return r.json()
 
@@ -93,4 +93,5 @@ if st.button("Send") and user_input:
     st.session_state["messages"].append({"role": "bot", "text": bot_reply})
 
     st.rerun()
+
 
