@@ -65,7 +65,7 @@ def send_to_webhook(json_params):
 # Streamlit UI
 # ----------------------------
 st.set_page_config(page_title="Gemini + TM1 Chatbot", layout="centered")
-st.title("🤖 Gemini + TM1 Chatbot")
+st.title("🤖TM1 Chatbot for IBM PA")
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = []
@@ -93,5 +93,6 @@ if st.button("Send") and user_input:
     st.session_state["messages"].append({"role": "bot", "text": bot_reply})
 
     st.rerun()
+
 
 
