@@ -10,8 +10,14 @@ import re
 
 import os
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-CERT_PATH = os.path.join(os.path.dirname(__file__), "zscaler.crt")
+cert_content = os.getenv("ZSCALER_CERT")
+CERT_PATH = "zscaler.crt"
 
+if cert_content:
+      CERT_PATH = "zscaler.crt"
+      with open(CERT_PATH, "w") as f:
+                f.write(cert_content)
+        
 prompt_template = """
 Extract structured parameters for a Dialogflow webhook.
 
@@ -93,6 +99,7 @@ if st.button("Send") and user_input:
     st.session_state["messages"].append({"role": "bot", "text": bot_reply})
 
     st.rerun()
+
 
 
 
