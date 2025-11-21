@@ -57,7 +57,7 @@ def send_to_webhook(json_params):
     r = requests.post(
         "https://chatbot-lpd7.onrender.com/webhook",
         json=payload,
-        verify="CERT_PATH"  # ✅ Custom cert
+        verify= CERT_PATH  # ✅ Custom cert
     )
     return r.json()
 
@@ -93,6 +93,7 @@ if st.button("Send") and user_input:
     st.session_state["messages"].append({"role": "bot", "text": bot_reply})
 
     st.rerun()
+
 
 
 
