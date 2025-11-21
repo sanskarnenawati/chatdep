@@ -7,7 +7,10 @@ import re
 # ----------------------------
 # 1. Configure Gemini
 # ----------------------------
-genai.configure(api_key="AIzaSyD-DuGNWXk1Wf87Ee3mTc6nmSY4uQwsSrU")
+
+import os
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
 
 prompt_template = """
 Extract structured parameters for a Dialogflow webhook.
@@ -90,3 +93,4 @@ if st.button("Send") and user_input:
     st.session_state["messages"].append({"role": "bot", "text": bot_reply})
 
     st.rerun()
+
